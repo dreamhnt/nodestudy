@@ -1,8 +1,8 @@
 #MEAN Stack Study
 ##Sprint-1) Full Stack 개발자 되기
   - MEAN 개념과 개요
-    + AngularJS
-    + NodeJS + ExpressJS
+    + AngularJS법법
+    + NodeJS + ExpressJS [사용법](http://pyrasis.com/nodejs/nodejs-HOWTO)
     + MongoDB + Redis(Advanced)
   - MEAN 이외에 알아야 할 것들
     + JavaScript
