@@ -21,7 +21,7 @@
     + [Yeoman](http://blog.winterwolf.me/?p=132) : 클라이언트 라이브러리관리 및 배포 Grunt, Bower, Yo 설치하기
     + NPM : 서버 라이브러리 관리
   - Git & GitHub 저장소 만들기
-    + [Git 사용법]((http://git-scm.com/book/ko/v1))
+    + [Git 사용법](http://git-scm.com/book/ko/v1)
     + Git Branch 전략
     + [GitHub 사용방법](http://syaku.tistory.com/245)
   - 클라우드 환경에 배포하여 테스트 하기
