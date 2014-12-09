@@ -113,3 +113,5 @@
   - 빅데이터의 활용
     + 개인화를 위한 데이터 활용 방안
     + MongoDB Integration Framework을 이용한 MapReducing
+
+출처:(http://mobicon.tistory.com/388)
