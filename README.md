@@ -18,7 +18,7 @@
     + Trello 에서 Scrum 개발하기
     + [행아웃](http://barugi.com/hangouts/)을 이용하여 회의하기
   - MEAN Stack 개발도구 개발환경에 설치하고 익히기
-    + Yeoman 사용법 [[1]](http://blog.winterwolf.me/?p=132)[2](http://mobicon.tistory.com/402) : 클라이언트 라이브러리관리 및 배포 Grunt, Bower, Yo 설치하기
+    + Yeoman 사용법 [[1]](http://blog.winterwolf.me/?p=132) [[2]](http://mobicon.tistory.com/402) : 클라이언트 라이브러리관리 및 배포 Grunt, Bower, Yo 설치하기
     + [Grunt 사용법](http://nodeqa.com/nodejs_ref/66)
     + NPM : 서버 라이브러리 관리
   - Git & GitHub 저장소 만들기
