@@ -13,7 +13,7 @@
 
 ##Sprint-1) 개발 준비 단계
   - 로컬 개발 환경 만들기
-    + Docker + Linux 환경 구성하기
+    + [Docker](http://pyrasis.com/Docker/Docker-HOWTO) + Linux 환경 구성하기
     + 개발환경에 Node.js, MySQL 설치하기
     + Trello 에서 Scrum 개발하기
     + [행아웃](http://barugi.com/hangouts/)을 이용하여 회의하기
