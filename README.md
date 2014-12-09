@@ -8,20 +8,22 @@
     + JavaScript
     + Bootstrap (or Zurb Foundation)
     + NodeJS Modules
-    + Mongoose
+    + MySQL
 
 
 ##Sprint-1) 개발 준비 단계
   - 로컬 개발 환경 만들기
-    + Vagrant + Linux 환경 구성하기
-    + 개발환경에 Node.js, MongoDB 설치하기
+    + Docker + Linux 환경 구성하기
+    + 개발환경에 Node.js, MySQL 설치하기
     + Trello 에서 Scrum 개발하기
+    + [행아웃](http://barugi.com/hangouts/)을 이용하여 회의하기
   - MEAN Stack 개발도구 개발환경에 설치하고 익히기
-    + Yeoman : 클라이언트 라이브러리관리 및 배포 Grunt, Bower, Yo 설치하기
+    + [Yeoman](http://blog.winterwolf.me/?p=132) : 클라이언트 라이브러리관리 및 배포 Grunt, Bower, Yo 설치하기
     + NPM : 서버 라이브러리 관리
   - Git & GitHub 저장소 만들기
+    + [Git 사용법]((http://git-scm.com/book/ko/v1))
     + Git Branch 전략
-    + GitHub 사용방법
+    + [GitHub 사용방법](http://syaku.tistory.com/245)
   - 클라우드 환경에 배포하여 테스트 하기
     + Cloud Development(Nitrous.io) 를 통한 협업개발 및 테스트하기
     + Heroku같은 PaaS에 배포하여 테스트하기
@@ -110,8 +112,8 @@
     + NodeJS Scale-out 확장 전략
     + MongoDB Sharding 및 Data Backup 전략
     + Redis Scale-out 전략
-  - 빅데이터의 활용
+  - 빅데이터의 활용고
     + 개인화를 위한 데이터 활용 방안
     + MongoDB Integration Framework을 이용한 MapReducing
 
-출처:(http://mobicon.tistory.com/388)
+참고:(http://mobicon.tistory.com/388)
