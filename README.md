@@ -1,7 +1,7 @@
 #MEAN Stack Study
 ##Sprint-1) Full Stack 개발자 되기
   - MEAN 개념과 개요
-    + AngularJS 사용법 [[1]](http://www.mcthe.com/xe/?mid=study&document_srl=19555&order_type=desc) [[2]](http://soomong.net/blog/2014/01/20/translation-ultimate-guide-to-learning-angularjs-in-one-day/)[[3]](http://blog.outsider.ne.kr/975)
+    + AngularJS 사용법 [[1]](http://www.mcthe.com/xe/?mid=study&document_srl=19555&order_type=desc) [[2]](http://soomong.net/blog/2014/01/20/translation-ultimate-guide-to-learning-angularjs-in-one-day/) [[3]](http://blog.outsider.ne.kr/975)
     + AngularJS [스타일가이드](https://github.com/mgechev/angularjs-style-guide/blob/master/README-ko-kr.md) 
     + NodeJS + ExpressJS [사용법](http://pyrasis.com/nodejs/nodejs-HOWTO)
     + MongoDB + Redis(Advanced)
