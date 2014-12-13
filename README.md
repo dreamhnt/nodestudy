@@ -11,7 +11,7 @@
     + NodeJS Modules
     + MySQL
 
-
+[행아웃연결](https://plus.google.com/hangouts/_/gyailwep27aemzxo7t44sulyzua)
 ##Sprint-1) 개발 준비 단계
   - 로컬 개발 환경 만들기
     + [Docker](http://pyrasis.com/Docker/Docker-HOWTO) + Linux 환경 구성하기
