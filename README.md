@@ -1,5 +1,6 @@
-#MEAN Stack Study
 ##[행아웃연결](https://plus.google.com/hangouts/_/gyailwep27aemzxo7t44sulyzua)
+
+#MEAN Stack Study
 ##Sprint-1) Full Stack 개발자 되기
   - MEAN 개념과 개요
     + AngularJS 사용법 [[1]](http://www.mcthe.com/xe/?mid=study&document_srl=19555&order_type=desc) [[2]](http://soomong.net/blog/2014/01/20/translation-ultimate-guide-to-learning-angularjs-in-one-day/) [[3]](http://blog.outsider.ne.kr/975)
