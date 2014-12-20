@@ -7,5 +7,18 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-  </body>
+
+	<form name="register" method="post" action="/register">
+			<b>Add Users</b><br>
+			id <input type="text" name="id"/>
+			<br>
+			password <input type="password" name="pwd"/>
+			<br>
+			name <input type="text" name="name"/>
+			<br>
+			email <input type="email" name="email"/>
+			<br>
+			<button type="submit" >가입하기</button>
+	</form>
+	</body>
 </html>
