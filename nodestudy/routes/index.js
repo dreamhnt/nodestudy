@@ -87,7 +87,7 @@ router.post('/admin/upload', function(req, res) {
     var mvrate = req.body.mvrate;
     var mvfirst= req.body.mvfirst;
     var orgposter = req.files.mvposter.originalname;
-    var saveposter = req.files.mvposter.name
+    var saveposter = req.files.mvposter.name;
 
 
     pool.getConnection(function(err, conn) {
