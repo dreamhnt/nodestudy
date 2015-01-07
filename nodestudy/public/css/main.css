@@ -756,7 +756,7 @@ a:hover {
   padding: 20px 0 10px;
 }
 .shop-item .title h3 {
-  font-size: 0.9em;
+  font-size: 1.5em;
   margin: 0 10px;
   text-align: center;
 }
@@ -779,7 +779,7 @@ a:hover {
 }
 .shop-item .price {
   color: #535b60;
-  font-size: 1.5em;
+  font-size: 1em;
   text-align: center;
   margin-bottom: 20px;
   font-weight: 600;
@@ -1245,37 +1245,17 @@ span.color-red {
 /*--------------------------------------------------------------------------
 +	Login/Register/Reset Password Forms Style
 --------------------------------------------------------------------------*/
-.basic-login {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px 20px 10px 20px;
-  -webkit-border-radius: 5px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 5px;
-  -moz-background-clip: padding;
-  border-radius: 5px;
-  background-clip: padding-box;
-  -webkit-box-shadow: inset 0 1px #fff,0 0 4px #c8cfe6;
-  -moz-box-shadow: inset 0 1px #fff,0 0 4px #c8cfe6;
-  box-shadow: inset 0 1px #fff,0 0 4px #c8cfe6;
-  color: inset 0 1px #fff,0 0 4px #c8cfe6;
-}
-.basic-login form {
-  margin: 0;
-}
-.basic-login label {
-  line-height: 30px;
-  font-size: 1.2em;
-}
 
-.basic-login input[type="checkbox"] {
-  margin-top: 4px;
-}
 .reg-title {
   line-height: 30px;
   font-size: 1.8em;
   margin-bottom:1em;
   padding-left:0.5em;
 
+}
+.social-login {
+  margin-top:2em;
+  float: right;
 }
 .social-login p {
   text-align: center;

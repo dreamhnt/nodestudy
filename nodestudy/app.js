@@ -5,10 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-
+var passport = require('passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+
+
 
 var app = express();
 
@@ -25,11 +28,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(multer({
-    dest: './public/img/poster',
-    rename: function (fieldname, filename) {
-        //return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()  한글 깨짐
-        return filename.toLowerCase() + Date.now()
-    }
+  dest: './public/img/poster/',
+  rename: function (fieldname, filename) {
+    /* date format
+    var date = new Date();
+
+    var year = date.getUTCFullYear();
+    var month = date.getUTCMonth();
+    var day = date.getUTCDate();
+    month = ("0" + (month + 1)).slice(-2)
+
+    var formattedDate = year + '-' + month + "-" + day;
+    */
+    return filename.toLowerCase()+ Date.now();
+  }
 }));
 
 app.use('/', routes);

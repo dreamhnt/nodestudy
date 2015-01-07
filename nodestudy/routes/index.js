@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
 var mysql = require('mysql');
+var bcrypt = require('bcrypt');
 
 /* DB Connection pool create */
 var pool =  mysql.createPool({
@@ -13,84 +13,102 @@ var pool =  mysql.createPool({
 	database        : 'nodestudy'
 });
 
-/* GET home page. */
+/* index page */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  pool.getConnection(function(err, conn){
+    if(err) console.error('err',err);
+
+    conn.query('select * from MOVIE', [], function(err, results){
+      if(err) {
+        console.error('err', err);
+      }
+      res.render('index', {results:results});
+    });
+    conn.release();
+  });
 });
+/* 로그인 */
+router.post('/login', function(req, res){
+  var id = req.body.id;
+  var pwd = req.body.pwd;
 
+  pool.getConnection(function(err, conn) {
+    if(err) console.error('err', err);
 
+    conn.query('select salt,pwd from MEMBER where id=?',[id], function(err, result){
+      if(err) console.error('err', err);
+      var dbsalt = result[0].salt;
+      var dbpwd = result[0].pwd;
+      pwd = bcrypt.hashSync(pwd, dbsalt);
+      if(pwd == dbpwd){
+        res.redirect('back');
+      } else {
+        res.send('<script>alert("비밀번호를 확인해주세요");location.href="/";</script>');
+      }
+    });
+    conn.release;
+  });
+});
+/* 회원가입 */
 router.post('/register', function(req, res) {
 	var id = req.body.id;
 	var name = req.body.name;
-	var email = req.body.email;
 	var pwd = req.body.pwd;
+  var salt = bcrypt.genSaltSync(12);
+  // Hash the password with the salt
+  pwd = bcrypt.hashSync(pwd, salt);
 
 	pool.getConnection(function(err, conn) {
 		if(err) console.error('err', err);
 
-		conn.query('insert into register(id, name, email, pwd) values (?,?,?,?)',[id,name,email,pwd], function(err, result) {
-			if(err) {
-				console.error('err',err);
-				conn.release();
-			}
-			console.log('result', result);
+		conn.query('insert into MEMBER(id, name, pwd, salt) values (?,?,?,?)',[id,name,pwd,salt], function(err, result) {
+			if(err) console.error('err',err);
+
 			if(result.affectedRows == 1) {
 				res.json({status:'success'});
 			} else {
 				res.json({status:'fail'});
 			}
-			conn.realease;
+			conn.release;
 		});
 	});
+
 });
 
-router.get('/result', function(req, res) {
-	pool.getConnection(function(err, conn) {
-		if(err) console.error('err', err);
-
-		conn.query('select * from register', [], function(err, results) {
-			if(err) {
-				console.error('err',err);
-				conn.release();
-			}
-			console.log(results);
-			res.render('result', {results:results});
-
-		});
-	});
-});
 
 router.get('/admin', function(req, res) {
   res.render('admin');
 });
 
-router.post('/upload', function(res, req) {
-    console.log(req.body);
-    console.log(req.files);
+router.post('/admin/upload', function(req, res) {
+
     var mvtitle = req.body.mvtitle;
     var mvsummary = req.body.mvsummary;
-    var mvclass = req.body.mvclass;
+    var mvrate = req.body.mvrate;
     var mvfirst= req.body.mvfirst;
-    var mvposter = req.body.files.name;
+    var orgposter = req.files.mvposter.originalname;
+    var saveposter = req.files.mvposter.name
+
 
     pool.getConnection(function(err, conn) {
-        if(err) console.error('err', err);
+      if(err) console.error('err', err);
 
-        conn.query('insert into movie(title, summary, class, first, poster) values (?,?,?,?,?)',[mvtitle,mvsummary,mvclass,mvfirst,mvposter], function(err, result) {
+        conn.query('insert into MOVIE(TITLE, SUMMARY, RATE, FIRST, ORGPOSTER, SAVEPOSTER) values (?,?,?,?,?,?)'
+          ,[mvtitle,mvsummary,mvrate,mvfirst,orgposter,saveposter], function(err, result) {
             if(err) {
                 console.error('err',err);
-                conn.release();
             }
             console.log('result', result);
             if(result.affectedRows == 1) {
-                res.json({status:'success'});
+                res.redirect('/admin');
             } else {
                 res.json({status:'fail'});
             }
-            conn.release();
         });
+      conn.release();
     });
 });
-
-
+ router.get('/board', function(req, res){
+   res.render('board');
+ });
 module.exports = router;

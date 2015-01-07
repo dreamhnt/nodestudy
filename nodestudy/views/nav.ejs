@@ -1,0 +1,126 @@
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!-- Navigation & Logo-->
+<div class="container ">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid menu-wrap">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">NodeMovie</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">영화 </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">무비차트</a></li>
+              <li><a href="#">영화정보</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">예매 </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">빠른예매</a></li>
+              <li><a href="#">상영시간표</a></li>
+            </ul>
+          </li>
+          <li><a href="#">극장</a></li>
+          <li><a href="/board">커뮤니티</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" data-toggle="modal" data-target="#login">로그인</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#register">가입</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
+
+          <!-- Login Modal -->
+          <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="regLabel"><b>로그인</b></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="basic-login">
+                        <form role="form" method="post" action="/login">
+                          <div class="form-group">
+                            <label for="register-id">Email</label>
+                            <input class="form-control" id="register-id" type="email" name="id">
+                          </div>
+                          <div class="form-group">
+                            <label for="register-password">비밀번호</label>
+                            <input class="form-control" id="register-password" type="password" name="pwd" >
+                          </div>
+                          <div class=" social-login form-group">
+                            <div class="social-login-buttons">
+                              <a href="#" class="btn-facebook-login">페이스북으로 로그인</a>
+                            </div>
+                            <input class="btn btn-success" type="submit" id="submit" value="로그인"/>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Register Modal -->
+          <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="regLabel"><b>회원가입</b></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="basic-login">
+                        <form role="form" method="post" action="/register">
+                          <div class="form-group">
+                            <label for="register-id">Email</label>
+                            <input class="form-control" id="register-id" type="email" name="id">
+                          </div>
+                          <div class="form-group">
+                            <label for="register-nickname">닉네임</label>
+                            <input class="form-control" id="register-nickname" type="text" name="name" >
+                          </div>
+                          <div class="form-group">
+                            <label for="register-password">비밀번호</label>
+                            <input class="form-control" id="register-password" type="password" name="pwd" >
+                          </div>
+                          <div class="form-group">
+                            <label for="register-password2">비밀번호 확인</label>
+                            <input class="form-control" id="register-password2" type="password" >
+                          </div>
+                          <div class=" social-login form-group">
+                            <div class="social-login-buttons">
+                              <a href="#" class="btn-facebook-login">페이스북으로 가입</a>
+                            </div>
+                            <input class="btn btn-success" type="submit" id="submit" value="가입하기"/>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+</div>
