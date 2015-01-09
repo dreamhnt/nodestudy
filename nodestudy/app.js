@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
 
 
 var routes = require('./routes/index');
@@ -13,6 +15,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+require('./routes/lib/passport')(passport);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -23,8 +26,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: 'veryverysecretsecret' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(multer({

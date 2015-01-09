@@ -40,6 +40,9 @@
           <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
 
           <!-- Login Modal -->
+          <!-- show any messages that come back with authentication -->
+
+
           <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
             <div class="modal-dialog modal-sm">
               <div class="modal-content">
@@ -60,12 +63,20 @@
                             <label for="register-password">비밀번호</label>
                             <input class="form-control" id="register-password" type="password" name="pwd" >
                           </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="remember"> remember
+                            </label>
+                          </div>
                           <div class=" social-login form-group">
                             <div class="social-login-buttons">
                               <a href="/auth/facebook" class="btn-facebook-login">페이스북으로 로그인</a>
                             </div>
                             <input class="btn btn-success" type="submit" id="submit" value="로그인"/>
                           </div>
+                          <% if (loginMessage.length > 0) { %>
+                          <div class="alert alert-danger"><%= loginMessage %></div>
+                          <% } %>
                         </form>
                       </div>
                     </div>
@@ -87,7 +98,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="basic-login">
-                        <form role="form" method="post" action="/register">
+                        <form role="form" method="post" action="/signup">
                           <div class="form-group">
                             <label for="register-id">Email</label>
                             <input class="form-control" id="register-id" type="email" name="id">

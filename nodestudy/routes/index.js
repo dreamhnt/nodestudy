@@ -1,10 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var bcrypt = require('bcrypt');
-var passport = require('passport')
-  ,LocalStrategy = require('passport-local').Strategy
-  ,FacebookStrategy = require('passport-facebook').Strategy;
+var passport = require('passport');
+
 
 
 /* DB Connection pool create */
@@ -19,43 +17,7 @@ var pool =  mysql.createPool({
 
 
 
-// serialize
-// 인증후 사용자 정보를 세션에 저장
-passport.serializeUser(function(user, done) {
-  console.log('serialize',user);
-  done(null, user);
-});
 
-
-// deserialize
-// 인증후, 사용자 정보를 세션에서 읽어서 request.user에 저장
-passport.deserializeUser(function(user, done) {
-  //findById(id, function (err, user) {
-  console.log('deserialize');
-  done(null, user);
-  //});
-});
-
-passport.use(new LocalStrategy({
-  usernameField:'id',
-  passwordField:'pwd',
-  passReqToCallback:true
-}
-, function(req, id, pwd, done){
-
-  }
-));
-
-passport.use(new FacebookStrategy({
-    clientID: '640584852733578',
-    clientSecret: '9bbc390216d73d8d7aed09261deaff2a',
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    done(null,profile);
-  }
-));
 
 router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback',
@@ -68,6 +30,7 @@ router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
 function ensureAuthenticated(req, res, next) {
   // 로그인이 되어 있으면, 다음 파이프라인으로 진행
   if (req.isAuthenticated()) { return next(); }
@@ -84,12 +47,51 @@ router.get('/', function(req, res) {
       if(err) {
         console.error('err', err);
       }
-      res.render('index', {results:results});
+      var datas = {
+        results:results,
+        loginMessage:req.flash('loginMessage'),
+        signupMessage:req.flash('signupMessage')
+      }
+      res.render('index', datas);
     });
     conn.release();
   });
 });
-/* 로그인 */
+
+router.post('/login', passport.authenticate('local-login', {
+  successRedirect : '/',
+  failureRedirect : '/',
+  failureFlash : true
+}),function(req, res){
+  if(req.body.remember){
+    req.session.cookie.maxAge = 1000 * 60 * 3;
+  } else {
+    req.session.cookie.expires = false;
+  }
+});
+
+router.post('/signup', passport.authenticate('local-signup', {
+  successRedirect : '/',
+  failureRedirect : '/',
+  failureFlash : true
+}));
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+// route middleware to make sure
+function isLoggedIn(req, res, next) {
+
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated())
+    return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
+/* 로그인
 router.post('/login', function(req, res){
   var id = req.body.id;
   var pwd = req.body.pwd;
@@ -111,7 +113,8 @@ router.post('/login', function(req, res){
     conn.release;
   });
 });
-/* 회원가입 */
+ */
+/* 회원가입
 router.post('/register', function(req, res) {
 	var id = req.body.id;
 	var name = req.body.name;
@@ -136,6 +139,7 @@ router.post('/register', function(req, res) {
 	});
 
 });
+ */
 
 
 router.get('/admin', function(req, res) {
