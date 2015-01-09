@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
+var passport = require('passport')
+  ,FacebookStrategy = require('passport-facebook').Strategy;
+
 
 /* DB Connection pool create */
 var pool =  mysql.createPool({
@@ -12,6 +15,54 @@ var pool =  mysql.createPool({
 	password        : 'dreamhnt',
 	database        : 'nodestudy'
 });
+
+
+
+// serialize
+// 인증후 사용자 정보를 세션에 저장
+passport.serializeUser(function(user, done) {
+  console.log('serialize',user);
+  done(null, user);
+});
+
+
+// deserialize
+// 인증후, 사용자 정보를 세션에서 읽어서 request.user에 저장
+passport.deserializeUser(function(user, done) {
+  //findById(id, function (err, user) {
+  console.log('deserialize');
+  done(null, user);
+  //});
+});
+
+passport.use(new FacebookStrategy({
+    clientID: '640584852733578',
+    clientSecret: '9bbc390216d73d8d7aed09261deaff2a',
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    done(null,profile);
+  }
+));
+
+router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/login_success',
+    failureRedirect: '/login_fail' }));
+router.get('/login_success', ensureAuthenticated, function(req, res){
+  res.send(req.user);
+});
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+function ensureAuthenticated(req, res, next) {
+  // 로그인이 되어 있으면, 다음 파이프라인으로 진행
+  if (req.isAuthenticated()) { return next(); }
+  // 로그인이 안되어 있으면, login 페이지로 진행
+  res.redirect('/');
+}
 
 /* index page */
 router.get('/', function(req, res) {
