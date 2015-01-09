@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 var passport = require('passport')
+  ,LocalStrategy = require('passport-local').Strategy
   ,FacebookStrategy = require('passport-facebook').Strategy;
 
 
@@ -34,6 +35,16 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
   //});
 });
+
+passport.use(new LocalStrategy({
+  usernameField:'id',
+  passwordField:'pwd',
+  passReqToCallback:true
+}
+, function(req, id, pwd, done){
+
+  }
+));
 
 passport.use(new FacebookStrategy({
     clientID: '640584852733578',
