@@ -11,7 +11,6 @@ module.exports = function(passport) {
   // serialize
 // 인증후 사용자 정보를 세션에 저장
   passport.serializeUser(function(user, done) {
-    console.log('serialize',user);
     done(null, user);
   });
 
@@ -20,7 +19,6 @@ module.exports = function(passport) {
 // 인증후, 사용자 정보를 세션에서 읽어서 request.user에 저장
   passport.deserializeUser(function(user, done) {
     //findById(id, function (err, user) {
-    console.log('deserialize');
     done(null, user);
     //});
   });
@@ -41,7 +39,7 @@ module.exports = function(passport) {
         pool.getConnection(function(err, conn) {
           if(err) return done(err);
 
-          conn.query('select * from MEMBER where id=?',[id], function(err, result) {
+          conn.query('select * from MEMBER where ID=?',[id], function(err, result) {
             if(err) return done(err);
             console.log('result',result)
             if(result.length){
@@ -52,7 +50,7 @@ module.exports = function(passport) {
                 pwd: hash,
                 name: name
               };
-              conn.query('insert into MEMBER(id, name, pwd, salt) values (?,?,?,?)',[id,name,hash,salt],function(err, result){
+              conn.query('insert into MEMBER(ID, NAME, PWD, SALT) values (?,?,?,?)',[id,name,hash,salt],function(err, result){
                 if(err) return done(err);
                 return done(null, newUserInfo);
               });
@@ -72,14 +70,13 @@ module.exports = function(passport) {
       pool.getConnection(function(err, conn) {
         if(err) console.error('err', err);
 
-        conn.query('select salt,pwd from MEMBER where id=?',[id], function(err, result){
+        conn.query('select * from MEMBER where ID=?',[id], function(err, result){
           if(err) return done(err);
           if(!result.length) {
             return done(null, false, req.flash('loginMessage','아이디가 존재하지 않습니다'));
           }
-
-          var dbsalt = result[0].salt;
-          var dbpwd = result[0].pwd;
+          var dbsalt = result[0].SALT;
+          var dbpwd = result[0].PWD;
           pwd = bcrypt.hashSync(pwd, dbsalt);
           if(pwd == dbpwd){
             return done(null, result[0]);

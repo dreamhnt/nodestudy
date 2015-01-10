@@ -2,22 +2,12 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var passport = require('passport');
+var dbconfig = require('./lib/database');
 
 
 
 /* DB Connection pool create */
-var pool =  mysql.createPool({
-	connectionLimit : 1000,
-	waitForConnections:false,
-	host            : 'localhost',
-	user            : 'root',
-	password        : 'dreamhnt',
-	database        : 'nodestudy'
-});
-
-
-
-
+var pool =  mysql.createPool(dbconfig.config);
 
 router.get('/auth/facebook', passport.authenticate('facebook'));
 router.get('/auth/facebook/callback',
@@ -39,7 +29,8 @@ function ensureAuthenticated(req, res, next) {
 }
 
 /* index page */
-router.get('/', function(req, res) {
+router.get('/',  function(req, res) {
+    console.log('USER', req.user);
   pool.getConnection(function(err, conn){
     if(err) console.error('err',err);
 
@@ -50,9 +41,13 @@ router.get('/', function(req, res) {
       var datas = {
         results:results,
         loginMessage:req.flash('loginMessage'),
-        signupMessage:req.flash('signupMessage')
+        signupMessage:req.flash('signupMessage'),
+        userInfo:req.user
       }
+        console.log('login',!datas.loginMessage);
+      console.log('datas',datas);
       res.render('index', datas);
+
     });
     conn.release();
   });
